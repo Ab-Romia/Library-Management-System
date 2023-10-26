@@ -45,7 +45,7 @@ public class ProductDatabase {
         String supplierName = data[3];
         int quantity = Integer.parseInt(data[4]);
         float price = Float.parseFloat(data[5]);
-        return new Product(productID, productName, manufacturerName, supplierName, quantity);
+        return new Product(productID, productName, manufacturerName, supplierName, quantity,price);
     }
 
     public ArrayList<Product> returnAllRecords() {

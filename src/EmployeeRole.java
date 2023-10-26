@@ -21,8 +21,8 @@ public class EmployeeRole {
         this.customerProductDatabase.readFromFile();
     }
 
-    public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity) {
-        Product product = new Product(productID, productName, manufacturerName, supplierName, quantity);
+    public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity, float price) {
+        Product product = new Product(productID, productName, manufacturerName, supplierName, quantity, price);
         productsDatabase.insertRecord(product);
         productsDatabase.saveToFile();
     }

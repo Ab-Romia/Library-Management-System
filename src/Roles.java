@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class Roles {
 
     public static void main(String[] args) {
-        /*Product product = new Product("P2394", "Laptop", "Apple", "TechSupplier", 10, 1500);
+        Product product = new Product("P2394", "Laptop", "Apple", "TechSupplier", 10,1500);
         System.out.println(product.lineRepresentation());
         System.out.println("Product ID: " + product.getSearchKey());
         System.out.println("Quantity: " + product.getQuantity());
         product.setQuantity(5);
-        System.out.println("New quantity: " + product.getQuantity());*/
+        System.out.println("New quantity: " + product.getQuantity());
         /*ProductDatabase productDatabase = new ProductDatabase("Products.txt");
         productDatabase.readFromFile();
 
