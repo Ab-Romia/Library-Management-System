@@ -1,28 +1,33 @@
 import java.io.*;
 import java.util.*;
 public class AdminRole {
-    private EmployeeUserDatabase database;
-    public void eddEmployee(String employeeId, String name, String email, String address, String phoneNumber) {
+    private EmployeeUserDatabase database =new EmployeeUserDatabase("Employees.txt");
+
+
+
+    public void addEmployee(String employeeId, String name, String email, String address, String phoneNumber) {
         try {
             File file = new File(database.getFileName());
             FileWriter fw = new FileWriter(file, true);
-            fw.write("\n" + employeeId + "," + name + "," + email + "," + address + "," + phoneNumber);
+            if(file.length()==0)
+                fw.write(employeeId + "," + name + "," + email + "," + address + "," + phoneNumber);
+            else
+                fw.write("\n" + employeeId + "," + name + "," + email + "," + address + "," + phoneNumber);
+            fw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
         public EmployeeUser[] getListOfEmployees() {
             try{
-                BufferedReader buff = new BufferedReader(new FileReader(database.getFileName()));
-                String line = buff.readLine();
-                if(line == null)
-                    return null;
+                BufferedReader buff = new BufferedReader(new FileReader("Employees.txt"));
+                String line;
                 ArrayList<EmployeeUser> records = new ArrayList<EmployeeUser>();
-                while (line!= null)
+                while ((line = buff.readLine())!= null)
                 {
                     String[] emp = line.split(",");
                     records.add(new EmployeeUser(emp[0], emp[1], emp[2], emp[3], emp[4]));
-                    line = buff.readLine();
+
                 }
                 buff.close();
                 EmployeeUser[] employees = new EmployeeUser[records.size()];
@@ -36,7 +41,7 @@ public class AdminRole {
     public void removeEmployee(String key)
     {
         try {
-            BufferedReader buff = new BufferedReader(new FileReader(database.getFileName()));
+            BufferedReader buff = new BufferedReader(new FileReader("Employees.txt"));
             String line = buff.readLine();
             ArrayList<String> records = new ArrayList<String>();
             while (line != null) {
@@ -46,7 +51,7 @@ public class AdminRole {
                 line = buff.readLine();
             }
             buff.close();
-            File file = new File(database.getFileName());
+            File file = new File("Employees.txt");
             FileWriter fw = new FileWriter(file);
             boolean flag = false;
             for (String record : records) {
@@ -59,11 +64,23 @@ public class AdminRole {
                 }
             }
             fw.close();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void logout() throws IOException {
-        database.readFromFile();
+
+    public void logout()  {
+        if(database.records!=null)
+        {
+            EmployeeUser[] employees = getListOfEmployees();
+            for(EmployeeUser record: employees)
+            {
+                if(!database.contains(record.getEmployeeId()))
+                    database.insertRecord(record);
+                database.saveToFile();
+            }
+        }
+
     }
 }

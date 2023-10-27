@@ -15,6 +15,10 @@ public class EmployeeUser {
     {
         return employeeId + "," + name + "," + email + "," + address + "," + phoneNumber;
     }
+    public String getSearchKey()
+    {
+        return employeeId;
+    }
     public String getEmployeeId() {
         return employeeId;
     }

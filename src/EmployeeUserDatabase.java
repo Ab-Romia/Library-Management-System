@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class EmployeeUserDatabase {
     private String fileName;
-    private ArrayList<EmployeeUser> records;
+    ArrayList<EmployeeUser> records;
     public EmployeeUserDatabase(String fileName){
         this.fileName = fileName;
         records = new ArrayList<EmployeeUser>();
