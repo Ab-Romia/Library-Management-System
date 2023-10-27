@@ -1,29 +1,17 @@
+import javax.xml.transform.Templates;
 import java.io.*;
 import java.util.*;
-public class EmployeeUserDatabase {
-    private String fileName;
+public class EmployeeUserDatabase extends Database<EmployeeUser>{
+
     ArrayList<EmployeeUser> records;
     public EmployeeUserDatabase(String fileName){
         this.fileName = fileName;
         records = new ArrayList<EmployeeUser>();
     }
-    public void readFromFile() throws IOException {
-        BufferedReader buff = new BufferedReader(new FileReader(fileName));
-        String line = buff.readLine();
-        while (line != null) {
-            String[] fields = line.split(",");
-            EmployeeUser record = new EmployeeUser(fields[0], fields[1], fields[2], fields[3], fields[4]);
-            records.add(record);
-            line = buff.readLine();
-        }
-        buff.close();
-    }
+
     public EmployeeUser createRecordFrom(String line){
         String[] fields = line.split(",");
         return new EmployeeUser(fields[0], fields[1], fields[2], fields[3], fields[4]);
-    }
-    public ArrayList<EmployeeUser> returnAllRecords(){
-        return records;
     }
     public boolean contains(String key){
         for (EmployeeUser record : records)
@@ -37,14 +25,7 @@ public class EmployeeUserDatabase {
                 return record;
         return null;
     }
-    public void insertRecord(EmployeeUser record){
-        records.add(record);
-    }
-    public void deleteRecord(String key){
-        EmployeeUser record = getRecord(key);
-        if(record != null)
-            records.remove(record);
-    }
+
     public void saveToFile() {
         try {
             File file = new File(fileName);

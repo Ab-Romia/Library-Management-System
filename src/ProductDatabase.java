@@ -16,26 +16,14 @@ import java.util.Iterator;
  *
  * @author mohab
  */
-public class ProductDatabase {
+public class ProductDatabase extends Database<Product> {
     private ArrayList<Product> records;
-    private String filename;
 
-    public ProductDatabase(String filename) {
+    public ProductDatabase(String fileName) {
         this.records = new ArrayList<>();
-        this.filename = filename;
+        this.fileName = fileName;
     }
 
-    public void readFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Product product = createRecordFrom(line);
-                records.add(product);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public Product createRecordFrom(String line) {
         String[] data = line.split(",");
@@ -47,11 +35,6 @@ public class ProductDatabase {
         float price = Float.parseFloat(data[5]);
         return new Product(productID, productName, manufacturerName, supplierName, quantity,price);
     }
-
-    public ArrayList<Product> returnAllRecords() {
-        return records;
-    }
-
     public boolean contains(String key) {
         for (Product product : records) {
             if (product.getSearchKey().equals(key)) {
@@ -70,23 +53,8 @@ public class ProductDatabase {
         return null;
     }
 
-    public void insertRecord(Product record) {
-        records.add(record);
-    }
-
-    public void deleteRecord(String key) {
-        Iterator<Product> iterator = records.iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            if (product.getSearchKey().equals(key)) {
-                iterator.remove();
-                break;
-            }
-        }
-    }
-
     public void saveToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Product product : records) {
                 writer.write(product.lineRepresentation());
                 writer.newLine();
