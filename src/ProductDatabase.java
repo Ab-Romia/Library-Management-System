@@ -17,10 +17,10 @@ import java.util.Iterator;
  * @author mohab
  */
 public class ProductDatabase extends Database<Product> {
-    private ArrayList<Product> records;
+
 
     public ProductDatabase(String fileName) {
-        this.records = new ArrayList<>();
+        this.t = new ArrayList<>();
         this.fileName = fileName;
     }
 
@@ -36,7 +36,7 @@ public class ProductDatabase extends Database<Product> {
         return new Product(productID, productName, manufacturerName, supplierName, quantity,price);
     }
     public boolean contains(String key) {
-        for (Product product : records) {
+        for (Product product : t) {
             if (product.getSearchKey().equals(key)) {
                 return true;
             }
@@ -45,7 +45,7 @@ public class ProductDatabase extends Database<Product> {
     }
 
     public Product getRecord(String key) {
-        for (Product product : records) {
+        for (Product product : t) {
             if (product.getSearchKey().equals(key)) {
                 return product;
             }
@@ -55,7 +55,7 @@ public class ProductDatabase extends Database<Product> {
 
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (Product product : records) {
+            for (Product product : t) {
                 writer.write(product.lineRepresentation());
                 writer.newLine();
             }

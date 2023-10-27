@@ -71,15 +71,16 @@ public class AdminRole {
     }
 
     public void logout()  {
-        if(database.records!=null)
+        if(!database.t.isEmpty())
         {
             EmployeeUser[] employees = getListOfEmployees();
             for(EmployeeUser record: employees)
             {
                 if(!database.contains(record.getEmployeeId()))
                     database.insertRecord(record);
-                database.saveToFile();
+
             }
+            database.saveToFile();
         }
 
     }

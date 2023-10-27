@@ -29,6 +29,12 @@ public abstract class Database<T> {
     public void insertRecord(T record){
         t.add(record);
     }
+    public String getFileName() {
+        return fileName;
+    }
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public ArrayList<T> returnAllRecords(){
         return t;
