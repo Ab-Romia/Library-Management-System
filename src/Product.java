@@ -40,7 +40,7 @@ public class Product {
         return productID;
     }
 
-    double getPrice() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double getPrice() {
+        return price;
     }
 }

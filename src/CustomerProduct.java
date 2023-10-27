@@ -41,7 +41,6 @@ public class CustomerProduct {
     }
 
     public String getSearchKey() {
-        return customerSSN + "," + productID + "," + purchaseDate.getDayOfMonth() + "-"
-                + purchaseDate.getMonthValue() + "-" + purchaseDate.getYear();
+        return customerSSN + "," + productID + "," + LocalDate.of(purchaseDate.getYear(), purchaseDate.getMonth(), purchaseDate.getDayOfMonth());
     }
 }

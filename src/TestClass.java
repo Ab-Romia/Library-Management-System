@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.io.*;
 public class TestClass {
@@ -104,6 +105,7 @@ public class TestClass {
             System.out.println("There is a problem in adding new operations to the customers products file or arraylist");
             return;
         }
+
         double returnValue=employee.returnProduct(oP3.getCustomerSSN(), oP3.getProductID(), oP3.getPurchaseDate(), LocalDate.of(2023, 5, 17));
         if(returnValue != newProducts[oldProducts.length+3].getPrice()){
             System.out.println("There is a problem in returning the products");

@@ -5,6 +5,7 @@
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -54,8 +55,9 @@ public class EmployeeRole {
         if (returnDate.isBefore(purchaseDate)) {
             return -1;
         }
-
-        String key = customerSSN + "," + productID + "," + purchaseDate.format(CustomerProduct.DATE_FORMATTER);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = purchaseDate.format(formatter);
+        String key = customerSSN + "," + productID + "," + formattedDate;
         if (!customerProductDatabase.contains(key)) {
             return -1;
         }
