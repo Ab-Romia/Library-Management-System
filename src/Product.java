@@ -7,7 +7,7 @@
  *
  * @author mohab
  */
-public class Product {
+public class Product implements TheInterface{
     private String productID;
     private String productName;
     private String manufacturerName;

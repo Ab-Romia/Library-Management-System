@@ -1,10 +1,8 @@
 import javax.xml.transform.Templates;
 import java.util.*;
 import java.io.*;
-public abstract class Database<T> {
-    //refactor the methods in CustomerProductDatabase and ProductDatabase to be in this class
+public abstract class Database<T extends TheInterface> {
      String fileName;
-
     ArrayList<T> t = new ArrayList<T>();
     public void readFromFile()
     {
@@ -41,9 +39,32 @@ public abstract class Database<T> {
     }
 
     public abstract T createRecordFrom(String line);
+    public boolean contains(String key)
+    {
+        for(T record : t)
+            if(record.getSearchKey().equals(key))
+                return true;
+        return false;
 
-    public abstract boolean contains(String key);
+    }
 
-    public abstract T getRecord(String key);
+
+    public  T getRecord(String key)
+    {
+        for(T record : t)
+            if(record.getSearchKey().equals(key))
+                return record;
+        return null;
+    }
+       public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (T record : t) {
+                writer.write(record.lineRepresentation());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

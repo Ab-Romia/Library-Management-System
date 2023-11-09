@@ -1,4 +1,4 @@
-public class EmployeeUser {
+public class EmployeeUser implements TheInterface {
     private String employeeId;
     private String name;
     private String email;

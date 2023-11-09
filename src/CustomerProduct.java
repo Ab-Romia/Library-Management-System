@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author mohab
  */
-public class CustomerProduct {
+public class CustomerProduct implements TheInterface {
 
     static DateTimeFormatter DATE_FORMATTER;
     private String customerSSN;

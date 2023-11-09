@@ -4,7 +4,6 @@ public class AdminRole {
     private EmployeeUserDatabase database =new EmployeeUserDatabase("Employees.txt");
 
 
-
     public void addEmployee(String employeeId, String name, String email, String address, String phoneNumber) {
         try {
             File file = new File(database.getFileName());
@@ -18,7 +17,7 @@ public class AdminRole {
             throw new RuntimeException(e);
         }
     }
-        public EmployeeUser[] getListOfEmployees() {
+        public EmployeeUser[] getListOfEmployees()  {
             try{
                 BufferedReader buff = new BufferedReader(new FileReader("Employees.txt"));
                 String line;

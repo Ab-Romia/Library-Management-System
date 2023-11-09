@@ -16,11 +16,11 @@ import java.util.Iterator;
  *
  * @author mohab
  */
-public class ProductDatabase extends Database<Product> {
+public class ProductDatabase extends Database<Product>  {
 
 
     public ProductDatabase(String fileName) {
-        this.t = new ArrayList<>();
+        this.t = new ArrayList<Product>();
         this.fileName = fileName;
     }
 
@@ -35,32 +35,7 @@ public class ProductDatabase extends Database<Product> {
         float price = Float.parseFloat(data[5]);
         return new Product(productID, productName, manufacturerName, supplierName, quantity,price);
     }
-    public boolean contains(String key) {
-        for (Product product : t) {
-            if (product.getSearchKey().equals(key)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public Product getRecord(String key) {
-        for (Product product : t) {
-            if (product.getSearchKey().equals(key)) {
-                return product;
-            }
-        }
-        return null;
-    }
 
-    public void saveToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (Product product : t) {
-                writer.write(product.lineRepresentation());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
