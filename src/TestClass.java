@@ -14,7 +14,7 @@ public class TestClass {
 
     public void testAdminRole() {
 
-        EmployeeUser[] employees = admin.getListOfEmployees();
+        EmployeeUser[]  employees = admin.getListOfEmployees();
         for (EmployeeUser emp : employees) {
             admin.removeEmployee(emp.getSearchKey());
         }
